@@ -1,7 +1,6 @@
-import ContactList from '../components/ContactList/ContactList';
+import ContactList from '../ContactList/ContactList';
 import { connect } from 'react-redux';
-import filterContact from '../helpers/filterContact';
-
+import filterContact from '../../helpers/filterContact';
 const mapStateToProps = state => {
   const contacts = state.contacts;
   const filter = state.filter;

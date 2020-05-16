@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const filterContact = createAction('FILTER_CONTACT', event => ({
+const filterContact = createAction('filtered', event => ({
   payload: event.target.value,
 }));
 

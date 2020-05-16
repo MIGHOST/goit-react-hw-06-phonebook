@@ -1,6 +1,6 @@
-import Contacts from '../components/Contacts/Contacts';
+import Contacts from '../Contacts/Contacts';
 import { connect } from 'react-redux';
-import { deleteContact } from '../store/action/contactAction';
+import { deleteContact } from '../../store/action/contactAction';
 
 const mapStateToProps = state => {
   return {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Phonebook from '../components/Phonebook/Phonebook';
-import { addOneContact, deleteContact } from '../store/action/contactAction';
+import Phonebook from '../Phonebook/Phonebook';
+import { addOneContact, deleteContact } from '../../store/action/contactAction';
 
 const mapStateToProps = state => {
   return {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Contact from '../../container/ContactContainer';
+import Contact from '../container/ContactContainer';
 import styles from './ContactList.module.css';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import popTransition from '../../assert/transition/pop.module.css';

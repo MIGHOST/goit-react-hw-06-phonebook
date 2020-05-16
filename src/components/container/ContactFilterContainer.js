@@ -1,5 +1,5 @@
-import ContactFilter from '../components/ContactFilter/ContactFilter';
-import filterContact from '../store/action/filterAction';
+import ContactFilter from '../ContactFilter/ContactFilter';
+import filterContact from '../../store/action/filterAction';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({

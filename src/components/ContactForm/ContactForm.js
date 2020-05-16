@@ -2,76 +2,64 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 import Button from '../Button/Button';
-import { toast } from 'react-toastify';
+import { Formik, ErrorMessage } from 'formik';
+import schema from './validation';
 
-export default class ContactForm extends Component {
-  static propTypes = {
-    addOneContact: PropTypes.func.isRequired,
-  };
-
-  state = {
+const ContactForm = ({ addOneContact }) => {
+  const initialValues = {
     name: '',
-    number: '',
+    number: 0,
   };
+  const handleSubmit = (values, { resetForm }) => {
+    addOneContact({ ...values });
 
-  handleNameChange = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    resetForm({});
   };
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      {({ values, handleChange, handleSubmit, isSubmitting }) => (
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <label htmlFor="name" className={styles.label}>
+            Name
+            <input
+              type="text"
+              value={values.name}
+              id="name"
+              onChange={handleChange}
+              autoComplete="off"
+              className={styles.input}
+            />
+            <ErrorMessage name="name">
+              {msg => <div className={styles.error}>{msg}</div>}
+            </ErrorMessage>
+          </label>
+          <label htmlFor="number" className={styles.label}>
+            Number
+            <input
+              type="text"
+              value={values.number === 0 ? '' : values.number}
+              id="number"
+              name="number"
+              onChange={handleChange}
+              className={styles.input}
+              autoComplete="off"
+            />
+            <ErrorMessage name="number">
+              {msg => <div className={styles.error}>{msg}</div>}
+            </ErrorMessage>
+          </label>
+          <Button title="Add contact" disabled={isSubmitting} />
+        </form>
+      )}
+    </Formik>
+  );
+};
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { name, number } = this.state;
-    if (name.length <= 1 || !isNaN(name)) {
-      toast.warn('Contact name is not correct!');
-      this.reset();
-      return;
-    } else if (number.length <= 1 || isNaN(number)) {
-      toast.warn('Contact number is not correct!');
-      this.reset();
-      return;
-    } else {
-      this.props.addOneContact({ ...this.state });
-    }
-
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({ name: '', number: '' });
-  };
-
-  render() {
-    const { name, number } = this.state;
-    const disabled = name.length <= 0 || number.length <= 0;
-    return (
-      <form onSubmit={this.handleSubmit} className={styles.form}>
-        <label htmlFor={this.id} className={styles.label}>
-          Name
-          <input
-            type="text"
-            value={name}
-            name="name"
-            onChange={this.handleNameChange}
-            id={this.id}
-            className={styles.input}
-          />
-        </label>
-        <label htmlFor={this.id} className={styles.label}>
-          Number
-          <input
-            type="text"
-            value={number}
-            name="number"
-            onChange={this.handleNameChange}
-            id={this.id}
-            className={styles.input}
-          />
-        </label>
-        <Button title="Add contact" disabled={disabled} />
-      </form>
-    );
-  }
+ContactForm.propTypes={
+  addOneContact: PropTypes.func.isRequired,
 }
+export default ContactForm;

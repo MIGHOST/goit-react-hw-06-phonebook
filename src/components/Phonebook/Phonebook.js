@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ContactForm from '../../container/ContactFormContainer';
-import ContactList from '../../container/ContactListContainer';
-import ContactFilter from '../../container/ContactFilterContainer';
 import { ToastContainer } from 'react-toastify';
+import { CSSTransition } from 'react-transition-group';
 import 'react-toastify/dist/ReactToastify.css';
+import ContactForm from '../container/ContactFormContainer';
+import ContactList from '../container/ContactListContainer';
+import ContactFilter from '../container/ContactFilterContainer';
 import { save, get } from '../../helpers/editLocalStorage';
 import styles from './Phonebook.module.css';
-import { CSSTransition } from 'react-transition-group';
 import slideTransition from '../../assert/transition/slide.module.css';
 
 class Phonebook extends Component {

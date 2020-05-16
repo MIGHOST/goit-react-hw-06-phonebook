@@ -1,5 +1,5 @@
 import React from 'react';
-import Phonebook from '../../container/PhBookContainer';
+import Phonebook from '../container/PhBookContainer';
 
 const App = () => <Phonebook />;
 
